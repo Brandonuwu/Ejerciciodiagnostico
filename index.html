@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Ejercicio3</title>
+</head>
+<body>
+
+	<input type="text" name="texto" id="textoIn" placeholder="texto">
+	<input type="submit" name="enviar" id="botonId">
+
+	<ol id="listas">Lista</ol>
+
+	<script type="text/javascript">
+
+		console.log("hola mundo");
+
+		const botonId = document.getElementById('botonId');
+		const lista = document.getElementById('listas')
+
+		let usuarios = [];
+		let existe;
+
+		botonId.addEventListener('click', () => {
+
+			const texto = document.getElementById('textoIn');
+			const textoIn = texto.value;
+
+			console.log(" usuario digitado es " + textoIn);
+
+			if (textoIn != ""){
+
+				existeUsuario(textoIn);
+				if (!existe){
+					usuarios.push(textoIn)
+				}else{
+					alert ("El usuario " + textoIn + " ya existe ");
+				}
+				
+			}else{
+				usuarios.sort();
+				pintarArray();
+				
+			}
+			texto.value="";
+
+		});
+
+		const pintarArray = () => {
+
+			for (usuario of usuarios){
+				let etiqueta = document.createElement("li");
+				etiqueta.textContent = usuario;
+				lista.appendChild(etiqueta);
+			}
+
+		};
+
+		const existeUsuario = (usuarioIn) => {
+			existe = false;
+			for (usuario of usuarios){
+				if(usuario === usuarioIn){
+					existe=true;
+				}
+			}
+		}
+
+	</script>
+
+</body>
+</html>
